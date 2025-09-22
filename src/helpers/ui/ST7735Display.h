@@ -22,6 +22,13 @@ public:
   {
     _isOn = false;
   }
+#elif LILYGO_TDECK
+  ST7735Display(RefCountedDigitalPin* peripher_power=NULL) : DisplayDriver(128, 64),
+      display(&SPI, PIN_TFT_CS, PIN_TFT_DC, PIN_TFT_RST),
+      _peripher_power(peripher_power)
+  {
+    _isOn = false;
+  }
 #else
   ST7735Display(RefCountedDigitalPin* peripher_power=NULL) : DisplayDriver(128, 64),
       display(&SPI1, PIN_TFT_CS, PIN_TFT_DC, PIN_TFT_RST),

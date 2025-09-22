@@ -4,8 +4,13 @@
   #define DISPLAY_ROTATION 2
 #endif
 
-#define SCALE_X  1.25f     // 160 / 128
-#define SCALE_Y  1.25f      // 80 / 64
+#ifndef DISPLAY_SCALE_X
+  #define DISPLAY_SCALE_X 1.25f  // 160 / 128
+#endif
+
+#ifndef DISPLAY_SCALE_Y
+  #define DISPLAY_SCALE_Y 1.25f  // 80 / 64
+#endif
 
 bool ST7735Display::i2c_probe(TwoWire& wire, uint8_t addr) {
   return true;
@@ -99,7 +104,7 @@ void ST7735Display::setColor(Color c) {
 }
 
 void ST7735Display::setCursor(int x, int y) {
-  display.setCursor(x*SCALE_X, y*SCALE_Y);
+  display.setCursor(x*DISPLAY_SCALE_X, y*DISPLAY_SCALE_Y);
 }
 
 void ST7735Display::print(const char* str) {
@@ -107,22 +112,22 @@ void ST7735Display::print(const char* str) {
 }
 
 void ST7735Display::fillRect(int x, int y, int w, int h) {
-  display.fillRect(x*SCALE_X, y*SCALE_Y, w*SCALE_X, h*SCALE_Y, _color);
+  display.fillRect(x*DISPLAY_SCALE_X, y*DISPLAY_SCALE_Y, w*DISPLAY_SCALE_X, h*DISPLAY_SCALE_Y, _color);
 }
 
 void ST7735Display::drawRect(int x, int y, int w, int h) {
-  display.drawRect(x*SCALE_X, y*SCALE_Y, w*SCALE_X, h*SCALE_Y, _color);
+  display.drawRect(x*DISPLAY_SCALE_X, y*DISPLAY_SCALE_Y, w*DISPLAY_SCALE_X, h*DISPLAY_SCALE_Y, _color);
 }
 
 void ST7735Display::drawXbm(int x, int y, const uint8_t* bits, int w, int h) {
-  display.drawBitmap(x*SCALE_X, y*SCALE_Y, bits, w, h, _color);
+  display.drawBitmap(x*DISPLAY_SCALE_X, y*DISPLAY_SCALE_Y, bits, w, h, _color);
 }
 
 uint16_t ST7735Display::getTextWidth(const char* str) {
   int16_t x1, y1;
   uint16_t w, h;
   display.getTextBounds(str, 0, 0, &x1, &y1, &w, &h);
-  return w / SCALE_X;
+  return w / DISPLAY_SCALE_X;
 }
 
 void ST7735Display::endFrame() {
