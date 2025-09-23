@@ -1,7 +1,7 @@
 #include "MemoryDisplay.h"
 
 #ifndef DISPLAY_ROTATION
-  #define DISPLAY_ROTATION 2
+  #define DISPLAY_ROTATION 0
 #endif
 
 #ifndef DISPLAY_SCALE_X
