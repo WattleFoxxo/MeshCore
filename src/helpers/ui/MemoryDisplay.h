@@ -7,8 +7,8 @@
 #include <Adafruit_SharpMem.h>
 #include <helpers/RefCountedDigitalPin.h>
 
-#define MEMORY_BLACK 0
-#define MEMORY_WHITE 1
+#define MEMORY_BLACK 1
+#define MEMORY_WHITE 0
 
 class MemoryDisplay : public DisplayDriver {
   Adafruit_SharpMem display;
